@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+
+        <!-- GOOGLE INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
+                    <button onclick="getLocation()">GET TEMPERATURE</button>
+                    <a href="/history">HISTORY</a>
+                    <p id="demo">
+                    
+                        
+                    </p>
+
+            </div>
+        </div>
+
+    </div>
+<script>
+
+function getLocation(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        console.log("NOT WORKING");
+      }
+    function showPosition(position) {
+        console.log(position.coords.latitude +" --- " + position.coords.longitude);
+        fetch("/hello", { 
+      
+            // Adding method type 
+            method: "POST", 
+                
+            // Adding body or contents to send 
+            body: JSON.stringify({ 
+                latitude:position.coords.latitude , 
+                longitude: position.coords.longitude, 
+                userId: 1 
+            }), 
+                
+            // Adding headers to the request 
+            headers: { 
+                "Content-type": "application/json; charset=UTF-8",
+            } 
+        }) 
+            
+        // Converting to JSON 
+        .then(response => response.json()) 
+            
+        // Displaying results to console 
+        .then(json => console.log(json)); 
+
+        }
+
+}
+
+
+
+
+</script>
+</div>
+</body>
+</html>
