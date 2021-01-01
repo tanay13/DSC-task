@@ -35,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect('mongodb+srv://tanay_r:lavairis504q@cluster0-subqu.mongodb.net/<dbname>?retryWrites=true&w=majority',{ useNewUrlParser: true })
+mongoose.connect('mongodb+srv://tanay_r:[password]@cluster0-subqu.mongodb.net/<dbname>?retryWrites=true&w=majority',{ useNewUrlParser: true })
 
 var userSchema = new mongoose.Schema({
     date:{
